@@ -6,6 +6,7 @@ export type AddressType ={
   street:StreetType
 }
 export type HoouseType= {
+  id?:number;
   buildedAt:number
   repaired:boolean;
   address:AddressType;

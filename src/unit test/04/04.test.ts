@@ -4,6 +4,7 @@ test("should take old men older then 90",()=>{
   const oldAges = ages.filter(age=>age>90)
 
   expect(oldAges.length).toBe(1)
+  expect(oldAges[0]).toBe(100)
 
 })
 
@@ -35,4 +36,17 @@ test("get only completed tsk",()=>{
   expect(completedTask[1].id).toBe(4)
 })
 
+test("get only uncompleted tsk",()=>{
+  const courses =[
+    {id:1,title:"Bread",isDone:false},
+    {id:2,title:"Milk",isDone:true},
+    {id:3,title:"Solt",isDone:false},
+    {id:4,title:"Sugar",isDone:true},]
+
+  const completedTask = courses.filter(task =>!task.isDone)
+
+  expect(completedTask.length).toBe(2)
+  expect(completedTask[0].id).toBe(1)
+  expect(completedTask[1].id).toBe(3)
+})
 
