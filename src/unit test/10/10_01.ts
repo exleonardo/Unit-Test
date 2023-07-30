@@ -20,6 +20,10 @@ export type UserWithLaptopType = UserType& {
 export type UserWithBooksType = UserType& {
     books:Array<string>
 }
+export type WithCompaniesType = {
+    companies : Array<{title:string,id:number}>
+}
+
 export function moveUser(user:UserWithLaptopType,city:string){
     const copy = {
         ...user,
@@ -47,4 +51,25 @@ export function upgradeUserLaptop (user:UserWithLaptopType,nooteBook:string){
         laptop:{...user.laptop,title:nooteBook}
     }
     return copy
+}
+
+export function updateBook (u:UserWithLaptopType&UserWithBooksType,first:string,last:string){
+    return {
+    ...u,
+    books: u.books.map((el) => el === first ? last : el)
+}
+}
+
+export function removeBook (u:UserWithLaptopType&UserWithBooksType,delBook:string){
+    return {
+        ...u,
+        books: u.books.filter((b) => b !== delBook)
+    }
+}
+export function addCompanies(u:UserWithLaptopType&WithCompaniesType,newCompany:string){
+    const addCompany = {title:newCompany,id:3}
+    return {
+    ...u,
+    companies: [...u.companies,addCompany]
+}
 }

@@ -1,12 +1,13 @@
 import {
+    addCompanies,
     addNewBooksToUser,
     makeHairStyle,
     moveUser,
-    moveUserToOtherHouse,
+    moveUserToOtherHouse, removeBook, updateBook,
     upgradeUserLaptop,
     UserType,
     UserWithBooksType,
-    UserWithLaptopType
+    UserWithLaptopType, WithCompaniesType
 } from './10_01';
 
 
@@ -85,13 +86,53 @@ test("Update js to ts",()=>{
         },
         books:["css","html","js","react"]
     }
-    const upgradeUser =  addNewBooksToUser(user,["ts","rest api"])
+    const upgradeUser =  updateBook(user,"js","ts")
     expect(user).not.toBe(upgradeUser)
     expect(user.address).toBe(upgradeUser.address)
     expect(user.books).not.toBe(upgradeUser.books)
     expect (user.laptop).toBe(upgradeUser.laptop)
     expect(user.books.length).toBe(4)
-    expect(upgradeUser.books[4]).toBe("ts")
-    expect(upgradeUser.books[5]).toBe("rest api")
+    expect (upgradeUser.books.length).toBe(4)
+    expect(upgradeUser.books[2]).toBe("ts")
+})
+
+test("remove js book ",()=>{
+    let user:UserWithLaptopType&UserWithBooksType= {
+        name:"Dimych",
+        hair:32,
+        address : {city:"Minsk",house:12},
+        laptop:{
+            title:"Zen book"
+        },
+        books:["css","html","js","react"]
+    }
+    const upgradeUser =  removeBook(user,"js")
+    expect(user).not.toBe(upgradeUser)
+    expect(user.address).toBe(upgradeUser.address)
+    expect(user.books).not.toBe(upgradeUser.books)
+    expect (user.laptop).toBe(upgradeUser.laptop)
+    expect(user.books.length).toBe(4)
+    expect (upgradeUser.books.length).toBe(3)
+    expect(upgradeUser.books[2]).toBe("react")
+})
+
+
+test("add companies ",()=>{
+    let user:UserWithLaptopType&WithCompaniesType= {
+        name:"Dimych",
+        hair:32,
+        address : {city:"Minsk",house:12},
+        laptop:{
+            title:"Zen book"
+        },
+        companies:[{title:"Epam",id:1},{title:"Google",id:2}]
+
+    }
+    const upgradeUser =  addCompanies(user,"Amazon")
+    expect(user).not.toBe(upgradeUser)
+    expect(user.companies.length).toBe(2)
+    expect(user.companies).not.toBe(upgradeUser.companies)
+    expect (upgradeUser.companies.length).toBe(3)
+    expect(upgradeUser.companies[2].title).toBe("Amazon")
 })
 
