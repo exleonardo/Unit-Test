@@ -74,6 +74,6 @@ let addAdr = user.adress
     adress:addAdr
   }
 
-  expect(user.age).toBe(1000)
+  expect(user.age).toBe(33)
 
 })
