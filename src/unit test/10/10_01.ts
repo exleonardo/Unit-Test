@@ -35,11 +35,10 @@ export function moveUserToOtherHouse(user:UserWithLaptopType&UserWithBooksType,h
 }
 
 export function addNewBooksToUser (u:UserWithLaptopType&UserWithBooksType,books:Array<string>){
-const copy ={
+    return {
     ...u,
-    books:[...u.books,...books]
+    books: [...u.books, ...books]
 }
-return copy
 }
 
 export function upgradeUserLaptop (user:UserWithLaptopType,nooteBook:string){

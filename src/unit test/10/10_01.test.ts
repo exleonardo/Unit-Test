@@ -75,7 +75,7 @@ test("Upgrade house",()=>{
     expect(user.laptop.title).toBe(upgradeUser.laptop.title)
 })
 
-test("add new book to user",()=>{
+test("Update js to ts",()=>{
     let user:UserWithLaptopType&UserWithBooksType= {
         name:"Dimych",
         hair:32,
