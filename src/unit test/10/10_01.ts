@@ -73,3 +73,13 @@ export function addCompanies(u:UserWithLaptopType&WithCompaniesType,newCompany:s
     companies: [...u.companies,addCompany]
 }
 }
+
+type CompaniesType ={
+    [title:string]: { title: string, id: number }[]
+}
+export function updateCompany(companies:CompaniesType,userName:string,companyId:number,newTitle:string){
+    return {
+    ...companies,
+    [userName]: companies[userName].map((el) => el.id === companyId ? {...el, title: newTitle} : el)
+}
+}
